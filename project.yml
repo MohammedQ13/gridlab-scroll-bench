@@ -1,0 +1,36 @@
+name: GridLab
+options:
+  bundleIdPrefix: lab.gridbench
+  deploymentTarget:
+    iOS: "17.0"
+settings:
+  base:
+    CODE_SIGN_IDENTITY: "-"
+    CODE_SIGNING_REQUIRED: "NO"
+    SWIFT_VERSION: "5.0"
+targets:
+  GridLab:
+    type: application
+    platform: iOS
+    sources: [GridLab]
+    info:
+      path: GridLab/Info.plist
+      properties:
+        UILaunchScreen: {}
+        CFBundleDisplayName: GridLab
+  GridLabUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources: [GridLabUITests]
+    dependencies:
+      - target: GridLab
+    info:
+      path: GridLabUITests/Info.plist
+schemes:
+  GridLab:
+    build:
+      targets:
+        GridLab: all
+        GridLabUITests: [test]
+    test:
+      targets: [GridLabUITests]
